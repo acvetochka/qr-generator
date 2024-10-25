@@ -1,75 +1,76 @@
 # QR Generator
 
-## Опис
-Цей скрипт дозволяє створювати QR-коди для будь-яких URL-адрес з можливістю налаштування версії QR-коду, рівня корекції помилок, розміру квадратних елементів та товщини бордюру. Параметри можуть бути змінені через командний рядок, або використовуватись за замовченням.
+## Description
+This script allows you to generate QR codes for any URLs with the ability to customize the version of the QR code, error correction level, square element size, and border thickness. Parameters can be modified via the command line or used with default values.
 
-## Необхідні залежності
-Для коректної роботи скрипта потрібна бібліотека `qrcode` для створення QR-кодів та бібліотека `Pillow` для збереження зображень.
+## Required Dependencies
+The script requires the `qrcode` library to generate QR codes and the `Pillow` library to save the images.
 
-### Встановлення залежностей:
-- Установіть Python (версія 3.x).
-- Встановіть необхідні бібліотеки за допомогою pip:
-```bash
-pip install qrcode[pil]
-```
+### Installing Dependencies:
+- Install Python (version 3.x).
+- Install the necessary libraries via pip:
+    ```bash
+    pip install qrcode[pil]
+    ```
 
-## Структура скрипта
-**Імпорт бібліотек**
+## Script Structure
+**Library Imports**
 
-- `qrcode` — для генерації QR-коду.
-- `argparse` — для парсингу аргументів командного рядка.
+- `qrcode` — for generating QR codes.
+- `argparse` — for parsing command-line arguments.
 
-**Функції скрипта:**
+**Script Functions:**
 
-- `create_qr_code` — основна функція для створення та збереження QR-коду:
+- `create_qr_code` — the main function for creating and saving a QR code:
 
-    **Параметри:**
+    **Parameters:**
 
     | Name    | Default  | Description    |
     | ------- | -------- | -------------- |
-    | `url`*  |  -       | **required** </br>URL-адреса, для якої генерується QR-код. | 
-    | `version` | `1`    | розмір QR-коду (кількість рядків та колонок) |
-    | `error_correction` | `L`            | рівень корекції помилок (L, M, Q або H)** |
-    | `box_size` | `10`  | розмір одного квадратного елемента QR-коду (в пікселях) |
-    | `border`   | `4`   | товщина бордюру |
-    | `output_file` | `qr_code.png` | назва вихідного файлу для збереження QR-коду |
+    | `url`*  |  -       | **required** </br>The URL for which the QR code is generated. | 
+    | `version` | `1`    | QR code size (number of rows and columns) |
+    | `error_correction` | `L`            | Error correction level (L, M, Q, or H)** |
+    | `box_size` | `10`  | Size of one square element of the QR code (in pixels) |
+    | `border`   | `4`   | Border thickness |
+    | `output_file` | `qr_code.png` | The output file name for saving the QR code |
 
-    Пояснення параметрів:
- 
-   ** 
-    L (7% корекції),
-    M (15% корекції),
-    Q (25% корекції),
-    H (30% корекції).
+    Explanation of parameters:
+    
+** 
+    L (7% correction),
+    M (15% correction),
+    Q (25% correction),
+    H (30% correction).
 
-- `main` — функція для обробки аргументів командного рядка за допомогою argparse і виклику функції create_qr_code з відповідними параметрами.
+- `main` — the function for handling command-line arguments using argparse and calling the `create_qr_code` function with the appropriate parameters.
 
-## Аргументи командного рядка:
+## Command-line Arguments:
 
-1. Обов'язкові аргументи:
-   - `url` — URL-адреса для генерації QR-коду.
-2. Необов'язкові аргументи:
-   - `--version`: версія QR-коду (1-40, за замовченням 1).
-   - `--error_correction`: рівень корекції помилок (L, M, Q, H, за замовченням 'L').
-   - `--box_size`: розмір боксу в пікселях (за замовченням 10).
-   - `--border`: товщина бордюру в пікселях (за замовченням 4).
-   - `--output`: шлях для збереження файлу (за замовченням qr_code.png).
+1. Required arguments:
+- `url` — The URL for generating the QR code.
+2. Optional arguments:
+- `--version`: QR code version (1-40, default is 1).
+- `--error_correction`: Error correction level (L, M, Q, H, default is 'L').
+- `--box_size`: Size of the box in pixels (default is 10).
+- `--border`: Border thickness in pixels (default is 4).
+- `--output`: File path for saving the QR code (default is qr_code.png).
 
-Щоб переглянути довідку (help) до скрипта, можна скористатися вбудованою функцією argparse, яка автоматично генерує довідкову інформацію про всі доступні аргументи командного рядка. Для цього потрібно додати прапорець -h або --help під час запуску скрипта.
+To view help for the script, you can use the built-in argparse function, which automatically generates help information for all available command-line arguments. To do this, add the `-h` or `--help` flag when running the script.
 
-Ось приклад команди для перегляду довідки до вашого скрипта:
+Here is an example command to view the help information for your script:
 
 ```bash
 python qr_generator.py --help
 ```
 
-Або короткий варіант:
+Or a shorter version:
 
 ```bash
 python qr_generator.py -h
 ```
 
-Це виведе наступну інформацію (приклад):
+This will display the following information (example):
+
 ```bash
 usage: qrCodeGen.py [-h] [--version VERSION] [--error_correction {L,M,Q,H}]
                     [--box_size BOX_SIZE] [--border BORDER] [--output OUTPUT]
@@ -88,25 +89,23 @@ options:
   --box_size BOX_SIZE   Box size (default is 10)
   --border BORDER       Border thickness (default is 4)
   --output OUTPUT       Output file name (default is 'qr_code.png')
-```
+  ```
 
-## Приклади використання:
-
-Створення QR-коду зі значеннями за замовченням:
+## Usage Examples:
+Generating a QR code with default values:
 
 ```bash
 python qrCodeGen.py https://your-website.com
 ```
 
-Зміна версії QR-коду та збереження з іншим іменем файлу:
+Changing the QR code version and saving with a different file name:
 
 ```bash
 python qrCodeGen.py https://your-website.com --version 5 --output my_qr_code.png
 ```
 
-Налаштування розміру боксу та рівня корекції помилок:
+Setting the box size and error correction level:
 
 ```bash
 python qrCodeGen.py https://your-website.com --box_size 8 --error_correction H
 ```
-
