@@ -47,13 +47,13 @@ The script requires the `qrcode` library to generate QR codes and the `Pillow` l
 ## Command-line Arguments:
 
 1. Required arguments:
-- `url` — The URL for generating the QR code.
+    - `url` — The URL for generating the QR code.
 2. Optional arguments:
-- `--version`: QR code version (1-40, default is 1).
-- `--error_correction`: Error correction level (L, M, Q, H, default is 'L').
-- `--box_size`: Size of the box in pixels (default is 10).
-- `--border`: Border thickness in pixels (default is 4).
-- `--output`: File path for saving the QR code (default is qr_code.png).
+    - `--version`: QR code version (1-40, default is 1).
+    - `--error_correction`: Error correction level (L, M, Q, H, default is 'L').
+    - `--box_size`: Size of the box in pixels (default is 10).
+    - `--border`: Border thickness in pixels (default is 4).
+    - `--output`: File path for saving the QR code (default is qr_code.png).
 
 To view help for the script, you can use the built-in argparse function, which automatically generates help information for all available command-line arguments. To do this, add the `-h` or `--help` flag when running the script.
 
@@ -109,3 +109,6 @@ Setting the box size and error correction level:
 ```bash
 python qrCodeGen.py https://your-website.com --box_size 8 --error_correction H
 ```
+
+## Author
+[Alona Kuznietsova](https://github.com/acvetochka)
